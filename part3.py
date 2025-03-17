@@ -225,9 +225,29 @@ head_agent = Head_Agent(OPENAI_KEY, PINECONE_KEY, "project2-chatbox-index")
 # head_agent.main_loop()
 
 
-# # Streamlit
-st.title("Multi-Agent Chatbot")
+# Streamlit UI
+st.title("Multi-Agent ML Chatbot")
 
+# 添加侧边栏与响应模式选择
+with st.sidebar:
+    st.title("Settings")
+    response_mode = st.selectbox(
+        "Select Response Mode:",
+        ["chatty", "funny", "concise"],
+        help="Choose how the chatbot should respond to your queries"
+    )
+    
+    st.markdown("---")
+    st.markdown("### Response Modes")
+    st.markdown("**Chatty**: Detailed and conversational responses with examples")
+    st.markdown("**Funny**: Humorous and witty answers")
+    st.markdown("**Concise**: Brief and to-the-point responses")
+    
+    st.markdown("---")
+    st.markdown("### About")
+    st.markdown("This chatbot uses a multi-agent system to provide accurate and relevant responses to machine learning queries.")
+
+# 主界面
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
@@ -235,13 +255,14 @@ for message in st.session_state.messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
-if prompt := st.chat_input("What would you like to chat about?"):
-
+if prompt := st.chat_input("Ask a question about machine learning..."):
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user"):
         st.markdown(prompt)
     
-    response = head_agent.handle_query(prompt, st.session_state.messages)
+    # 使用所选的响应模式
+    with st.spinner("Thinking..."):
+        response = head_agent.handle_query(prompt, st.session_state.messages, mode=response_mode)
     
     st.session_state.messages.append({"role": "assistant", "content": response})
     with st.chat_message("assistant"):
