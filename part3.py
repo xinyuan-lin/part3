@@ -6,11 +6,11 @@ import openai
 
 
 # TODO: Replace with your actual OpenAI API key
-with open('/Users/linxinyuan/Desktop/596/open_ai_key.txt', 'r') as f:
-    OPENAI_KEY = f.readline().strip()
+# with open('/Users/linxinyuan/Desktop/596/open_ai_key.txt', 'r') as f:
+#     OPENAI_KEY = f.readline().strip()
 
-with open('/Users/linxinyuan/Desktop/596/pine_key.txt', 'r') as f:
-    PINECONE_KEY = f.readline().strip()
+# with open('/Users/linxinyuan/Desktop/596/pine_key.txt', 'r') as f:
+#     PINECONE_KEY = f.readline().strip()
 
 OPENAI_KEY = st.secrets["OPENAI_API_KEY"]
 PINECONE_KEY = st.secrets["PINECONE_API_KEY"]
