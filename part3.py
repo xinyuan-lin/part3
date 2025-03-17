@@ -236,16 +236,6 @@ with st.sidebar:
         ["chatty", "funny", "concise"],
         help="Choose how the chatbot should respond to your queries"
     )
-    
-    st.markdown("---")
-    st.markdown("### Response Modes")
-    st.markdown("**Chatty**: Detailed and conversational responses with examples")
-    st.markdown("**Funny**: Humorous and witty answers")
-    st.markdown("**Concise**: Brief and to-the-point responses")
-    
-    st.markdown("---")
-    st.markdown("### About")
-    st.markdown("This chatbot uses a multi-agent system to provide accurate and relevant responses to machine learning queries.")
 
 # 主界面
 if "messages" not in st.session_state:
